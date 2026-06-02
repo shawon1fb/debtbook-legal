@@ -4,144 +4,307 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — Debt Book</title>
-<meta name="description" content="Privacy Policy for the Debt Book iOS app">
+<meta name="description" content="Privacy Policy for the Debt Book iOS app — your data stays on your device.">
 <style>
-  :root { color-scheme: light dark; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6; max-width: 760px; margin: 0 auto; padding: 32px 20px 80px;
-    color: #1c1c1e; background: #ffffff;
+  :root {
+    color-scheme: light dark;
+    --accent: #4f6df5;
+    --accent-soft: #eef1fe;
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #1c1d21;
+    --muted: #6b6e7b;
+    --border: #e7e8ef;
+    --radius: 18px;
+    --shadow: 0 1px 3px rgba(20,22,40,.06), 0 8px 24px rgba(20,22,40,.05);
   }
   @media (prefers-color-scheme: dark) {
-    body { color: #e5e5e7; background: #1c1c1e; }
-    a { color: #4ea1ff; }
-    table, th, td { border-color: #3a3a3c; }
-    th { background: #2c2c2e; }
-    code { background: #2c2c2e; }
+    :root {
+      --accent: #8aa0ff;
+      --accent-soft: #20233a;
+      --bg: #0e0f14;
+      --card: #16171f;
+      --text: #e9eaf0;
+      --muted: #9a9dac;
+      --border: #262833;
+      --shadow: 0 1px 3px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+    }
   }
-  h1 { font-size: 2rem; margin-bottom: .25rem; }
-  h2 { margin-top: 2rem; border-bottom: 1px solid #e0e0e0; padding-bottom: .3rem; }
-  a { color: #0a66ff; }
-  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
-  th, td { border: 1px solid #e0e0e0; padding: 8px 12px; text-align: left; }
-  th { background: #f5f5f7; }
-  code { background: #f0f0f2; padding: 2px 6px; border-radius: 4px; font-size: .9em; }
-  .meta { color: #6e6e73; }
-  hr { border: none; border-top: 1px solid #e0e0e0; margin: 2rem 0; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; margin: 0; color: var(--text); background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px 96px; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--accent) 0%, #6f4ff5 100%);
+    color: #fff; padding: 56px 20px 64px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: auto 0 -1px 0; height: 40px;
+    background: var(--bg); border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.18); backdrop-filter: blur(6px);
+    padding: 7px 16px; border-radius: 999px; font-size: .82rem; font-weight: 600;
+    letter-spacing: .02em; margin-bottom: 18px;
+  }
+  .hero h1 { font-size: 2.4rem; margin: 0 0 8px; letter-spacing: -.02em; font-weight: 800; }
+  .hero p { margin: 0; opacity: .92; font-size: 1.02rem; }
+  .app-icon {
+    width: 64px; height: 64px; border-radius: 16px; margin: 0 auto 18px;
+    background: rgba(255,255,255,.16); display: flex; align-items: center; justify-content: center;
+    font-size: 30px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+  }
+
+  /* Meta bar */
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: center;
+    margin: -28px auto 0; max-width: 720px; position: relative; z-index: 2;
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px 24px; box-shadow: var(--shadow); font-size: .9rem;
+  }
+  .meta b { color: var(--text); }
+  .meta span { color: var(--muted); }
+  .meta a { color: var(--accent); text-decoration: none; }
+
+  /* Highlight cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 14px; margin: 28px 0 8px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px 18px 16px; box-shadow: var(--shadow);
+  }
+  .card .ic { font-size: 22px; margin-bottom: 8px; display: block; }
+  .card h3 { margin: 0 0 4px; font-size: .98rem; }
+  .card p { margin: 0; color: var(--muted); font-size: .88rem; }
+
+  /* Sections */
+  section { margin-top: 34px; }
+  h2 {
+    font-size: 1.25rem; letter-spacing: -.01em; margin: 0 0 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h2 .num {
+    flex: 0 0 auto; width: 28px; height: 28px; border-radius: 9px;
+    background: var(--accent-soft); color: var(--accent); font-size: .85rem; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .panel {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 4px 22px 18px; box-shadow: var(--shadow);
+  }
+  .panel > p:first-child { margin-top: 16px; }
+  p { color: var(--text); }
+  ul { padding-left: 20px; }
+  li { margin: 6px 0; }
+  li::marker { color: var(--accent); }
+  a { color: var(--accent); }
+  code {
+    background: var(--accent-soft); color: var(--accent); padding: 2px 7px;
+    border-radius: 6px; font-size: .85em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  strong { font-weight: 700; }
+
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: .92rem; }
+  th, td { border-bottom: 1px solid var(--border); padding: 11px 12px; text-align: left; vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; }
+  tr:last-child td { border-bottom: none; }
+
+  .callout {
+    border-left: 3px solid var(--accent); background: var(--accent-soft);
+    padding: 14px 18px; border-radius: 0 12px 12px 0; margin: 16px 0; color: var(--text);
+  }
+
+  footer { text-align: center; margin-top: 48px; color: var(--muted); font-size: .85rem; }
+  footer a { color: var(--accent); text-decoration: none; }
+  .pill-link {
+    display: inline-block; margin-top: 10px; background: var(--accent); color: #fff;
+    padding: 11px 22px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: .9rem;
+  }
 </style>
 </head>
 <body>
 
-<h1>Privacy Policy</h1>
-<p class="meta">
-  <strong>App:</strong> Debt Book<br>
-  <strong>Developer:</strong> Shahanul Haque<br>
-  <strong>Effective date:</strong> June 2, 2026<br>
-  <strong>Contact:</strong> <a href="mailto:shahanulhaqueshawon@gmail.com">shahanulhaqueshawon@gmail.com</a>
-</p>
+<header class="hero">
+  <div class="app-icon">📒</div>
+  <span class="badge">🔒 Privacy-first · No backend</span>
+  <h1>Privacy Policy</h1>
+  <p>Your debts stay on your device. We never see them.</p>
+</header>
 
-<p>Debt Book ("the App", "we", "us") is a personal loan and debt tracker for iOS. This policy explains what data the App handles and how it is protected. <strong>We do not operate a server and we do not collect, transmit, sell, or share your personal data with us.</strong> Your records stay on your device and, if you choose, in your own private iCloud account.</p>
+<div class="wrap">
 
-<hr>
+  <div class="meta">
+    <span><b>App</b> · Debt Book</span>
+    <span><b>Developer</b> · Shahanul Haque</span>
+    <span><b>Effective</b> · June 2, 2026</span>
+    <span><b>Contact</b> · <a href="mailto:shahanulhaqueshawon@gmail.com">shahanulhaqueshawon@gmail.com</a></span>
+  </div>
 
-<h2>1. Summary</h2>
-<ul>
-  <li><strong>No backend.</strong> The App has no server of ours. We never receive your financial records.</li>
-  <li><strong>Your data stays on your device</strong> in a local database (Apple SwiftData).</li>
-  <li><strong>iCloud sync is optional</strong> and uses <em>your</em> private iCloud account — not ours.</li>
-  <li><strong>No analytics, no tracking, no advertising SDKs.</strong></li>
-  <li>The only network use is for optional iCloud backup and for processing subscription purchases through Apple / RevenueCat.</li>
-</ul>
+  <p style="margin-top:26px;">Debt Book (“the App”, “we”, “us”) is a personal loan and debt tracker for iOS. This policy explains what data the App handles and how it is protected. <strong>We do not operate a server and we do not collect, transmit, sell, or share your personal data with us.</strong> Your records stay on your device and, if you choose, in your own private iCloud account.</p>
 
-<h2>2. Data You Enter</h2>
-<p>You may store the following in the App: debtor/creditor names, transaction amounts, dates, notes, interest terms, payment records, books/ledgers, and your own profile.</p>
-<ul>
-  <li>This data is saved <strong>locally on your device</strong> using SwiftData.</li>
-  <li>It is <strong>not sent to us</strong> or to any third party we control.</li>
-  <li>You can delete any record, or clear all data, at any time from within the App.</li>
-</ul>
+  <div class="cards">
+    <div class="card"><span class="ic">📵</span><h3>No backend</h3><p>We run no server. Your financial records never reach us.</p></div>
+    <div class="card"><span class="ic">📱</span><h3>On-device</h3><p>Data lives in a local database on your iPhone.</p></div>
+    <div class="card"><span class="ic">☁️</span><h3>Your iCloud</h3><p>Optional sync uses your private iCloud — not ours.</p></div>
+    <div class="card"><span class="ic">🚫</span><h3>No tracking</h3><p>Zero analytics, ads, or tracking SDKs.</p></div>
+  </div>
 
-<h2>3. iCloud Sync &amp; Backup (Optional, Premium)</h2>
-<p>If you enable Cloud Backup/Sync:</p>
-<ul>
-  <li>Your data is stored in <strong>your own private iCloud container</strong> (<code>iCloud.com.shahanul.Debt-Book</code>) under your Apple ID.</li>
-  <li>This transfer is between your device and Apple's iCloud. <strong>We have no access to it.</strong></li>
-  <li>Apple's handling of iCloud data is governed by <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</li>
-  <li>You can disable sync or delete the iCloud backup at any time.</li>
-</ul>
-<p>Network access is required <strong>only</strong> for this feature. If you do not enable iCloud backup, the App functions fully offline.</p>
+  <section>
+    <h2><span class="num">1</span> Summary</h2>
+    <div class="panel">
+      <ul>
+        <li><strong>No backend.</strong> The App has no server of ours. We never receive your financial records.</li>
+        <li><strong>Your data stays on your device</strong> in a local database (Apple SwiftData).</li>
+        <li><strong>iCloud sync is optional</strong> and uses <em>your</em> private iCloud account — not ours.</li>
+        <li><strong>No analytics, no tracking, no advertising SDKs.</strong></li>
+        <li>The only network use is for optional iCloud backup and for processing subscription purchases through Apple / RevenueCat.</li>
+      </ul>
+    </div>
+  </section>
 
-<h2>4. Contacts Access</h2>
-<p>The App can import a contact's name to speed up adding a transaction (<code>NSContactsUsageDescription</code>).</p>
-<ul>
-  <li>Contact access is requested only when you tap to pick a contact.</li>
-  <li>The selected contact's details are used <strong>on your device</strong> to fill in transaction fields.</li>
-  <li>Contact data is <strong>not uploaded</strong> anywhere by us.</li>
-  <li>You can deny or revoke contacts permission in iOS Settings; the App still works (you type names manually).</li>
-</ul>
+  <section>
+    <h2><span class="num">2</span> Data You Enter</h2>
+    <div class="panel">
+      <p>You may store the following in the App: debtor/creditor names, transaction amounts, dates, notes, interest terms, payment records, books/ledgers, and your own profile.</p>
+      <ul>
+        <li>This data is saved <strong>locally on your device</strong> using SwiftData.</li>
+        <li>It is <strong>not sent to us</strong> or to any third party we control.</li>
+        <li>You can delete any record, or clear all data, at any time from within the App.</li>
+      </ul>
+    </div>
+  </section>
 
-<h2>5. AI Book-Name Suggestions</h2>
-<p>The App can suggest names for your books using Apple's <strong>on-device</strong> language model (<code>NSLanguageModelUsageDescription</code>).</p>
-<ul>
-  <li>This runs <strong>entirely on your device</strong> using Apple's Foundation Models.</li>
-  <li>No prompt or data is sent to us or to an external AI service for this feature.</li>
-</ul>
+  <section>
+    <h2><span class="num">3</span> iCloud Sync &amp; Backup <span style="font-size:.7em;color:var(--muted);font-weight:500;">· Optional, Premium</span></h2>
+    <div class="panel">
+      <p>If you enable Cloud Backup/Sync:</p>
+      <ul>
+        <li>Your data is stored in <strong>your own private iCloud container</strong> (<code>iCloud.com.shahanul.Debt-Book</code>) under your Apple ID.</li>
+        <li>This transfer is between your device and Apple's iCloud. <strong>We have no access to it.</strong></li>
+        <li>Apple's handling of iCloud data is governed by <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</li>
+        <li>You can disable sync or delete the iCloud backup at any time.</li>
+      </ul>
+      <div class="callout">Network access is required <strong>only</strong> for this feature. If you do not enable iCloud backup, the App functions fully offline.</div>
+    </div>
+  </section>
 
-<h2>6. Subscriptions &amp; Payments</h2>
-<p>Premium features are sold via subscriptions and a lifetime purchase. Payments are processed by <strong>Apple (App Store)</strong>, and subscription state is managed through <strong>RevenueCat</strong>, our subscription infrastructure provider.</p>
-<ul>
-  <li>We never see or store your payment card details. Apple handles all billing.</li>
-  <li>RevenueCat receives a <strong>random, anonymous app user identifier</strong> and your purchase/entitlement status to validate your subscription and enable restore-purchases. It does not receive your debt records, names, or amounts.</li>
-  <li>RevenueCat's handling of data is governed by <a href="https://www.revenuecat.com/privacy/">RevenueCat's Privacy Policy</a>.</li>
-  <li>Apple's handling is governed by <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</li>
-</ul>
-<p>Manage or cancel your subscription anytime in <strong>iOS Settings → Apple ID → Subscriptions</strong>.</p>
+  <section>
+    <h2><span class="num">4</span> Contacts Access</h2>
+    <div class="panel">
+      <p>The App can import a contact's name to speed up adding a transaction (<code>NSContactsUsageDescription</code>).</p>
+      <ul>
+        <li>Contact access is requested only when you tap to pick a contact.</li>
+        <li>The selected contact's details are used <strong>on your device</strong> to fill in transaction fields.</li>
+        <li>Contact data is <strong>not uploaded</strong> anywhere by us.</li>
+        <li>You can deny or revoke contacts permission in iOS Settings; the App still works (you type names manually).</li>
+      </ul>
+    </div>
+  </section>
 
-<h2>7. Security</h2>
-<ul>
-  <li>Optional <strong>PIN lock</strong> and <strong>Face ID / Touch ID</strong> lock protect access to the App.</li>
-  <li>Your PIN is stored only as a <strong>SHA-256 hash</strong> on your device — the raw PIN is never stored.</li>
-  <li>Because your data lives on your device (and in your own iCloud), its security also depends on your device passcode and Apple ID security.</li>
-</ul>
+  <section>
+    <h2><span class="num">5</span> AI Book-Name Suggestions</h2>
+    <div class="panel">
+      <p>The App can suggest names for your books using Apple's <strong>on-device</strong> language model (<code>NSLanguageModelUsageDescription</code>).</p>
+      <ul>
+        <li>This runs <strong>entirely on your device</strong> using Apple's Foundation Models.</li>
+        <li>No prompt or data is sent to us or to an external AI service for this feature.</li>
+      </ul>
+    </div>
+  </section>
 
-<h2>8. Data We Do <strong>Not</strong> Collect</h2>
-<p>We do <strong>not</strong> collect, process, or have access to:</p>
-<ul>
-  <li>Your debts, transactions, names, amounts, or notes</li>
-  <li>Your contacts</li>
-  <li>Analytics, usage tracking, device identifiers for advertising</li>
-  <li>Your location</li>
-  <li>Any data on a server operated by us (we have none)</li>
-</ul>
+  <section>
+    <h2><span class="num">6</span> Subscriptions &amp; Payments</h2>
+    <div class="panel">
+      <p>Premium features are sold via subscriptions and a lifetime purchase. Payments are processed by <strong>Apple (App Store)</strong>, and subscription state is managed through <strong>RevenueCat</strong>, our subscription infrastructure provider.</p>
+      <ul>
+        <li>We never see or store your payment card details. Apple handles all billing.</li>
+        <li>RevenueCat receives a <strong>random, anonymous app user identifier</strong> and your purchase/entitlement status to validate your subscription and enable restore-purchases. It does not receive your debt records, names, or amounts.</li>
+        <li>RevenueCat's handling of data is governed by <a href="https://www.revenuecat.com/privacy/">RevenueCat's Privacy Policy</a>.</li>
+        <li>Apple's handling is governed by <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</li>
+      </ul>
+      <div class="callout">Manage or cancel your subscription anytime in <strong>iOS Settings → Apple ID → Subscriptions</strong>.</div>
+    </div>
+  </section>
 
-<h2>9. Children's Privacy</h2>
-<p>The App is not directed to children under 13 and does not knowingly collect data from children. As the App collects no personal data on our servers, no such data is gathered.</p>
+  <section>
+    <h2><span class="num">7</span> Security</h2>
+    <div class="panel">
+      <ul>
+        <li>Optional <strong>PIN lock</strong> and <strong>Face ID / Touch ID</strong> lock protect access to the App.</li>
+        <li>Your PIN is stored only as a <strong>SHA-256 hash</strong> on your device — the raw PIN is never stored.</li>
+        <li>Because your data lives on your device (and in your own iCloud), its security also depends on your device passcode and Apple ID security.</li>
+      </ul>
+    </div>
+  </section>
 
-<h2>10. Your Rights &amp; Control</h2>
-<p>You are in full control of your data:</p>
-<ul>
-  <li><strong>Access / Export:</strong> Export your data from within the App.</li>
-  <li><strong>Delete:</strong> Delete individual records or clear all data in the App; delete the iCloud backup from iCloud settings.</li>
-  <li>Because we hold no copy of your data, deletion on your device (and iCloud) removes it entirely.</li>
-</ul>
+  <section>
+    <h2><span class="num">8</span> Data We Do <em>Not</em> Collect</h2>
+    <div class="panel">
+      <p>We do <strong>not</strong> collect, process, or have access to:</p>
+      <ul>
+        <li>Your debts, transactions, names, amounts, or notes</li>
+        <li>Your contacts</li>
+        <li>Analytics, usage tracking, device identifiers for advertising</li>
+        <li>Your location</li>
+        <li>Any data on a server operated by us (we have none)</li>
+      </ul>
+    </div>
+  </section>
 
-<h2>11. Third-Party Services</h2>
-<table>
-  <thead><tr><th>Service</th><th>Purpose</th><th>Data involved</th></tr></thead>
-  <tbody>
-    <tr><td>Apple iCloud</td><td>Optional backup/sync</td><td>Your records (in your private container)</td></tr>
-    <tr><td>Apple App Store</td><td>Payment processing</td><td>Handled by Apple</td></tr>
-    <tr><td>RevenueCat</td><td>Subscription validation</td><td>Anonymous user ID, purchase status</td></tr>
-  </tbody>
-</table>
-<p>No advertising, analytics, or tracking services are used.</p>
+  <section>
+    <h2><span class="num">9</span> Children's Privacy</h2>
+    <div class="panel">
+      <p>The App is not directed to children under 13 and does not knowingly collect data from children. As the App collects no personal data on our servers, no such data is gathered.</p>
+    </div>
+  </section>
 
-<h2>12. Changes to This Policy</h2>
-<p>We may update this policy as the App evolves. The "Effective date" above reflects the latest version. Material changes will be reflected here and, where appropriate, in the App.</p>
+  <section>
+    <h2><span class="num">10</span> Your Rights &amp; Control</h2>
+    <div class="panel">
+      <p>You are in full control of your data:</p>
+      <ul>
+        <li><strong>Access / Export:</strong> Export your data from within the App.</li>
+        <li><strong>Delete:</strong> Delete individual records or clear all data in the App; delete the iCloud backup from iCloud settings.</li>
+        <li>Because we hold no copy of your data, deletion on your device (and iCloud) removes it entirely.</li>
+      </ul>
+    </div>
+  </section>
 
-<h2>13. Contact</h2>
-<p>Questions about this policy or your privacy:</p>
-<p><strong>Email:</strong> <a href="mailto:shahanulhaqueshawon@gmail.com">shahanulhaqueshawon@gmail.com</a></p>
+  <section>
+    <h2><span class="num">11</span> Third-Party Services</h2>
+    <div class="panel">
+      <table>
+        <thead><tr><th>Service</th><th>Purpose</th><th>Data involved</th></tr></thead>
+        <tbody>
+          <tr><td>Apple iCloud</td><td>Optional backup/sync</td><td>Your records (in your private container)</td></tr>
+          <tr><td>Apple App Store</td><td>Payment processing</td><td>Handled by Apple</td></tr>
+          <tr><td>RevenueCat</td><td>Subscription validation</td><td>Anonymous user ID, purchase status</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-bottom:6px;color:var(--muted);font-size:.9rem;">No advertising, analytics, or tracking services are used.</p>
+    </div>
+  </section>
 
+  <section>
+    <h2><span class="num">12</span> Changes to This Policy</h2>
+    <div class="panel">
+      <p>We may update this policy as the App evolves. The “Effective date” above reflects the latest version. Material changes will be reflected here and, where appropriate, in the App.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Questions about your privacy?</strong></p>
+    <a class="pill-link" href="mailto:shahanulhaqueshawon@gmail.com">Email us</a>
+    <p style="margin-top:20px;">© 2026 Shahanul Haque · Debt Book</p>
+  </footer>
+
+</div>
 </body>
 </html>
