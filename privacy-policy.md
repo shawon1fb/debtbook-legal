@@ -82,7 +82,7 @@ Manage or cancel your subscription anytime in **iOS Settings → Apple ID → Su
 
 ## 7. Security
 
-- Optional **PIN lock** and **Face ID / Touch ID** lock protect access to the App.
+- Optional **PIN lock** and **auto-lock** protect access to the App.
 - Your PIN is stored only as a **SHA-256 hash** on your device — the raw PIN is never stored.
 - Because your data lives on your device (and in your own iCloud), its security also depends on your device passcode and Apple ID security.
 
