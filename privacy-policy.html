@@ -58,10 +58,11 @@
   .hero h1 { font-size: 2.4rem; margin: 0 0 8px; letter-spacing: -.02em; font-weight: 800; }
   .hero p { margin: 0; opacity: .92; font-size: 1.02rem; }
   .app-icon {
-    width: 64px; height: 64px; border-radius: 16px; margin: 0 auto 18px;
-    background: rgba(255,255,255,.16); display: flex; align-items: center; justify-content: center;
-    font-size: 30px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+    width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 18px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.3), inset 0 0 0 1px rgba(255,255,255,.25);
+    overflow: hidden;
   }
+  .app-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* Meta bar */
   .meta {
@@ -132,7 +133,7 @@
 <body>
 
 <header class="hero">
-  <div class="app-icon">📒</div>
+  <div class="app-icon"><img src="app-icon.png" alt="Debt Book"></div>
   <span class="badge">🔒 Privacy-first · No backend</span>
   <h1>Privacy Policy</h1>
   <p>Your debts stay on your device. We never see them.</p>
