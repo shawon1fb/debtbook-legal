@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debt Book — Loan &amp; IOU Tracker</title>
+  <meta name="description" content="Track money you lend and borrow. Auto interest, separate books, payment tracking, PIN lock. Free on the App Store." />
+  <meta property="og:title" content="Debt Book — Loan &amp; IOU Tracker" />
+  <meta property="og:description" content="Know who owes you. Every loan and debt in one clear view." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #f4f7fc; --card: #ffffff; --text: #1a1a21; --muted: #5a626e;
+      --border: #e4e9f2; --primary: #0052d4; --accent: #ffc107;
+      --lend: #22b377; --radius: 18px; --shadow: 0 10px 34px rgba(16,42,90,.10);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0b1220; --card: #131c2e; --text: #eef2f8; --muted: #9aa4b5; --border: #22304a; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--primary); }
+
+    .hero { background: linear-gradient(135deg, #0052d4, #003a97); color: #fff;
+      padding: 64px 24px 88px; text-align: center; position: relative; overflow: hidden; }
+    .app-icon { width: 92px; height: 92px; border-radius: 22px; margin: 0 auto 22px; overflow: hidden;
+      box-shadow: 0 6px 26px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.25); }
+    .app-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero h1 { font-size: 2.6rem; margin: 0 0 10px; font-weight: 800; letter-spacing: -.02em; }
+    .hero h1 .gold { color: var(--accent); }
+    .hero p { margin: 0 auto 28px; opacity: .92; font-size: 1.1rem; max-width: 520px; }
+    .store-btn { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #0a0a0a;
+      text-decoration: none; padding: 14px 26px; border-radius: 999px; font-weight: 700; font-size: 1rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+    .store-btn:hover { transform: translateY(-1px); }
+
+    .wrap { max-width: 960px; margin: -48px auto 0; padding: 0 20px; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .feature { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 24px; }
+    .feature .num { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px;
+      border-radius: 10px; background: rgba(0,82,212,.10); color: var(--primary); font-weight: 800; margin-bottom: 12px; }
+    .feature h3 { margin: 0 0 6px; font-size: 1.12rem; }
+    .feature h3 .gold { color: #b8860b; }
+    @media (prefers-color-scheme: dark) { .feature h3 .gold { color: var(--accent); } }
+    .feature p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+    .cta { text-align: center; padding: 56px 20px 20px; }
+    .cta h2 { font-size: 1.6rem; margin: 0 0 18px; }
+
+    footer { text-align: center; color: var(--muted); font-size: .88rem; padding: 30px 20px 50px; }
+    footer a { margin: 0 8px; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="app-icon"><img src="app-icon.png" alt="Debt Book" /></div>
+    <h1><span class="gold">Know</span> who owes you</h1>
+    <p>Track every loan, debt, and IOU in one clear view. Auto interest, separate books, and payment tracking — all private, all on your device.</p>
+    <a class="store-btn" href="https://apps.apple.com/app/id6771255586">Download on the App Store</a>
+  </header>
+
+  <main class="wrap">
+    <section class="features">
+      <div class="feature"><div class="num">1</div><h3><span class="gold">Know</span> who owes you</h3><p>Every loan and debt, one clear view.</p></div>
+      <div class="feature"><div class="num">2</div><h3>Interest calculates <span class="gold">itself</span></h3><p>Simple or compound — done for you.</p></div>
+      <div class="feature"><div class="num">3</div><h3>Personal &amp; business, <span class="gold">separate</span></h3><p>Unlimited books, zero mix-ups.</p></div>
+      <div class="feature"><div class="num">4</div><h3>Log a loan in <span class="gold">seconds</span></h3><p>Add interest, dates, and notes fast.</p></div>
+      <div class="feature"><div class="num">5</div><h3>Every payment <span class="gold">tracked</span></h3><p>See exactly what's left to collect.</p></div>
+      <div class="feature"><div class="num">6</div><h3>Your data, <span class="gold">locked down</span></h3><p>PIN protection and auto-lock.</p></div>
+      <div class="feature"><div class="num">7</div><h3>Find anything <span class="gold">instantly</span></h3><p>Search people, books, and amounts.</p></div>
+      <div class="feature"><div class="num">8</div><h3>Unlock more with <span class="gold">Pro</span></h3><p>Cloud backup, PDF export, and more.</p></div>
+    </section>
+
+    <section class="cta">
+      <h2>Start tracking in seconds</h2>
+      <a class="store-btn" href="https://apps.apple.com/app/id6771255586">Download on the App Store</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>© Debt Book</div>
+    <div>
+      <a href="privacy-policy.html">Privacy Policy</a>·
+      <a href="support.html">Support</a>·
+      <a href="mailto:shawon1fb@gmail.com">Contact</a>
+    </div>
+  </footer>
+</body>
+</html>
