@@ -4,80 +4,172 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Debt Book — Loan &amp; IOU Tracker</title>
-  <meta name="description" content="Track money you lend and borrow. Auto interest, separate books, payment tracking, PIN lock. Free on the App Store." />
+  <meta name="description" content="Track money you lend and borrow. Automatic interest, separate books, payment tracking, and PIN lock — private and offline. Free on the App Store." />
   <meta property="og:title" content="Debt Book — Loan &amp; IOU Tracker" />
   <meta property="og:description" content="Know who owes you. Every loan and debt in one clear view." />
+  <meta property="og:image" content="screenshots/01.jpg" />
   <meta property="og:type" content="website" />
   <style>
     :root {
       --bg: #f4f7fc; --card: #ffffff; --text: #1a1a21; --muted: #5a626e;
-      --border: #e4e9f2; --primary: #0052d4; --accent: #ffc107;
+      --border: #e4e9f2; --primary: #0052d4; --accent: #ffc107; --accent-ink: #b8860b;
       --lend: #22b377; --radius: 18px; --shadow: 0 10px 34px rgba(16,42,90,.10);
     }
     @media (prefers-color-scheme: dark) {
-      :root { --bg: #0b1220; --card: #131c2e; --text: #eef2f8; --muted: #9aa4b5; --border: #22304a; }
+      :root { --bg: #0b1220; --card: #131c2e; --text: #eef2f8; --muted: #9aa4b5;
+        --border: #22304a; --accent-ink: #ffc107; }
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.6; }
+      background: var(--bg); color: var(--text); line-height: 1.65; }
     a { color: var(--primary); }
+    h2 { font-size: 1.9rem; font-weight: 800; letter-spacing: -.02em; margin: 0 0 12px; }
+    section { padding: 56px 20px; }
+    .inner { max-width: 980px; margin: 0 auto; }
 
+    /* Hero */
     .hero { background: linear-gradient(135deg, #0052d4, #003a97); color: #fff;
-      padding: 64px 24px 88px; text-align: center; position: relative; overflow: hidden; }
+      padding: 64px 24px 84px; text-align: center; }
     .app-icon { width: 92px; height: 92px; border-radius: 22px; margin: 0 auto 22px; overflow: hidden;
       box-shadow: 0 6px 26px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.25); }
     .app-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero h1 { font-size: 2.6rem; margin: 0 0 10px; font-weight: 800; letter-spacing: -.02em; }
+    .hero h1 { font-size: 2.7rem; margin: 0 0 12px; font-weight: 800; letter-spacing: -.02em; }
     .hero h1 .gold { color: var(--accent); }
-    .hero p { margin: 0 auto 28px; opacity: .92; font-size: 1.1rem; max-width: 520px; }
+    .hero p { margin: 0 auto 26px; opacity: .93; font-size: 1.12rem; max-width: 540px; }
     .store-btn { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #0a0a0a;
-      text-decoration: none; padding: 14px 26px; border-radius: 999px; font-weight: 700; font-size: 1rem;
-      box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+      text-decoration: none; padding: 14px 28px; border-radius: 999px; font-weight: 700; font-size: 1rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,.22); }
     .store-btn:hover { transform: translateY(-1px); }
+    .trust-line { margin-top: 18px; font-size: .9rem; opacity: .85; }
 
-    .wrap { max-width: 960px; margin: -48px auto 0; padding: 0 20px; }
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    /* Screenshot gallery */
+    .gallery { background: linear-gradient(180deg, rgba(255,193,7,.08), transparent 60%); }
+    .scroller { display: flex; gap: 18px; overflow-x: auto; padding: 8px 4px 20px; scroll-snap-type: x mandatory; }
+    .scroller::-webkit-scrollbar { height: 8px; }
+    .scroller::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
+    .shot { flex: 0 0 auto; width: 240px; scroll-snap-align: center; }
+    .shot img { width: 100%; border-radius: 22px; box-shadow: var(--shadow); border: 1px solid var(--border); display: block; }
+    .center { text-align: center; }
+    .center .muted { color: var(--muted); max-width: 560px; margin: 0 auto; }
+
+    /* About */
+    .about p { color: var(--muted); font-size: 1.05rem; max-width: 720px; }
+
+    /* Features */
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 26px; }
     .feature { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
       box-shadow: var(--shadow); padding: 24px; }
-    .feature .num { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px;
-      border-radius: 10px; background: rgba(0,82,212,.10); color: var(--primary); font-weight: 800; margin-bottom: 12px; }
-    .feature h3 { margin: 0 0 6px; font-size: 1.12rem; }
-    .feature h3 .gold { color: #b8860b; }
-    @media (prefers-color-scheme: dark) { .feature h3 .gold { color: var(--accent); } }
-    .feature p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .feature .ico { font-size: 1.6rem; margin-bottom: 10px; }
+    .feature h3 { margin: 0 0 6px; font-size: 1.14rem; }
+    .feature p { margin: 0; color: var(--muted); font-size: .96rem; }
 
-    .cta { text-align: center; padding: 56px 20px 20px; }
-    .cta h2 { font-size: 1.6rem; margin: 0 0 18px; }
+    /* Trust strip */
+    .strip { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .strip .inner { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: center; color: var(--muted); font-weight: 600; }
+    .strip span { display: inline-flex; align-items: center; gap: 8px; }
+    .dot { color: var(--lend); }
+
+    /* FAQ */
+    details { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 16px 20px; margin-bottom: 12px; }
+    summary { font-weight: 600; cursor: pointer; }
+    summary::-webkit-details-marker { color: var(--primary); }
+    details p { margin: 10px 0 0; color: var(--muted); }
+
+    /* CTA */
+    .cta { text-align: center; background: linear-gradient(135deg, #0052d4, #003a97); color: #fff; }
+    .cta h2 { color: #fff; }
+    .cta p { opacity: .9; margin: 0 0 22px; }
 
     footer { text-align: center; color: var(--muted); font-size: .88rem; padding: 30px 20px 50px; }
     footer a { margin: 0 8px; }
+
+    @media (max-width: 480px) { .hero h1 { font-size: 2.1rem; } h2 { font-size: 1.55rem; } }
   </style>
 </head>
 <body>
+
+  <!-- Hero -->
   <header class="hero">
     <div class="app-icon"><img src="app-icon.png" alt="Debt Book" /></div>
     <h1><span class="gold">Know</span> who owes you</h1>
-    <p>Track every loan, debt, and IOU in one clear view. Auto interest, separate books, and payment tracking — all private, all on your device.</p>
+    <p>Track every loan, debt, and IOU in one clear view. Automatic interest, separate books, and payment tracking — private and offline.</p>
     <a class="store-btn" href="https://apps.apple.com/app/id6771255586">Download on the App Store</a>
+    <div class="trust-line">Free to start · No account · Your data stays private</div>
   </header>
 
-  <main class="wrap">
-    <section class="features">
-      <div class="feature"><div class="num">1</div><h3><span class="gold">Know</span> who owes you</h3><p>Every loan and debt, one clear view.</p></div>
-      <div class="feature"><div class="num">2</div><h3>Interest calculates <span class="gold">itself</span></h3><p>Simple or compound — done for you.</p></div>
-      <div class="feature"><div class="num">3</div><h3>Personal &amp; business, <span class="gold">separate</span></h3><p>Unlimited books, zero mix-ups.</p></div>
-      <div class="feature"><div class="num">4</div><h3>Log a loan in <span class="gold">seconds</span></h3><p>Add interest, dates, and notes fast.</p></div>
-      <div class="feature"><div class="num">5</div><h3>Every payment <span class="gold">tracked</span></h3><p>See exactly what's left to collect.</p></div>
-      <div class="feature"><div class="num">6</div><h3>Your data, <span class="gold">locked down</span></h3><p>PIN protection and auto-lock.</p></div>
-      <div class="feature"><div class="num">7</div><h3>Find anything <span class="gold">instantly</span></h3><p>Search people, books, and amounts.</p></div>
-      <div class="feature"><div class="num">8</div><h3>Unlock more with <span class="gold">Pro</span></h3><p>Cloud backup, PDF export, and more.</p></div>
-    </section>
+  <!-- Screenshot gallery -->
+  <section class="gallery">
+    <div class="inner center">
+      <h2>See it in action</h2>
+      <p class="muted">Swipe through the app — a clean, focused way to manage money between people.</p>
+      <div class="scroller">
+        <div class="shot"><img src="screenshots/01.jpg" alt="Dashboard — know who owes you" loading="lazy" /></div>
+        <div class="shot"><img src="screenshots/02.jpg" alt="Interest calculates itself" loading="lazy" /></div>
+        <div class="shot"><img src="screenshots/03.jpg" alt="Personal and business, separate" loading="lazy" /></div>
+        <div class="shot"><img src="screenshots/04.jpg" alt="Log a loan in seconds" loading="lazy" /></div>
+        <div class="shot"><img src="screenshots/05.jpg" alt="Every payment tracked" loading="lazy" /></div>
+        <div class="shot"><img src="screenshots/06.jpg" alt="Unlock everything with Pro" loading="lazy" /></div>
+        <div class="shot"><img src="screenshots/07.jpg" alt="Your data, locked down" loading="lazy" /></div>
+        <div class="shot"><img src="screenshots/08.jpg" alt="Find anything instantly" loading="lazy" /></div>
+      </div>
+    </div>
+  </section>
 
-    <section class="cta">
+  <!-- About -->
+  <section class="about">
+    <div class="inner">
+      <h2>Built for the money between people</h2>
+      <p>We all lend and borrow — a friend short on cash, a family member's medical bill, a shopkeeper's running tab. It's easy to lose track of who paid what, and awkward to ask. <strong>Debt Book</strong> keeps every lend and borrow in one place, calculates interest for you, and shows exactly what's left to collect — so nothing slips through the cracks.</p>
+      <p>Perfect for friends and family, freelancers, and small shops or businesses that track customer dues. No spreadsheets, no guesswork.</p>
+    </div>
+  </section>
+
+  <!-- Feature deep-dive -->
+  <section>
+    <div class="inner">
+      <h2>Everything you need to track debt</h2>
+      <div class="features">
+        <div class="feature"><div class="ico">📊</div><h3>One clear overview</h3><p>Lend and borrow totals, principal, interest, collected, and remaining — at a glance.</p></div>
+        <div class="feature"><div class="ico">🧮</div><h3>Interest, automatic</h3><p>Simple or compound interest that recalculates itself as payments come in.</p></div>
+        <div class="feature"><div class="ico">📚</div><h3>Separate books</h3><p>Keep personal, family, and business ledgers apart — no mix-ups, no confusion.</p></div>
+        <div class="feature"><div class="ico">✅</div><h3>Payment tracking</h3><p>Record part-payments and see exactly what's left to collect or repay.</p></div>
+        <div class="feature"><div class="ico">🔒</div><h3>Private &amp; offline</h3><p>Everything stays on your device. PIN lock, auto-lock, and no ads — ever.</p></div>
+        <div class="feature"><div class="ico">☁️</div><h3>Backup &amp; export</h3><p>Pro adds iCloud backup, PDF statements, and data export/import.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust strip -->
+  <section class="strip">
+    <div class="inner">
+      <span><span class="dot">●</span> 100% offline</span>
+      <span><span class="dot">●</span> No account needed</span>
+      <span><span class="dot">●</span> No ads</span>
+      <span><span class="dot">●</span> Your own iCloud only</span>
+      <span><span class="dot">●</span> English &amp; Bengali</span>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="inner">
+      <h2>Questions</h2>
+      <details open><summary>Where is my data stored?</summary><p>On your device only. There's no account and no server. Enable iCloud and it syncs to your own private iCloud — we never receive it.</p></details>
+      <details><summary>How does interest work?</summary><p>Add a rate and period when creating a transaction — simple or compound. It recalculates automatically as you record payments.</p></details>
+      <details><summary>What's in Pro?</summary><p>Cloud backup, PDF export, data export/import, App Lock (PIN), and unlimited books. The free tier includes up to two books.</p></details>
+      <details><summary>I forgot my PIN.</summary><p>For security the PIN can't be recovered. Reinstalling clears the lock but also local data — restore from your iCloud or exported backup afterwards.</p></details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="inner">
       <h2>Start tracking in seconds</h2>
+      <p>Free to download. No account required.</p>
       <a class="store-btn" href="https://apps.apple.com/app/id6771255586">Download on the App Store</a>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <footer>
     <div>© Debt Book</div>
@@ -87,5 +179,6 @@
       <a href="mailto:shawon1fb@gmail.com">Contact</a>
     </div>
   </footer>
+
 </body>
 </html>
