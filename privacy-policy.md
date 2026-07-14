@@ -7,18 +7,18 @@ description: Privacy Policy for the Debt Book iOS app
 
 **App:** Debt Book
 **Developer:** Shahanul Haque
-**Effective date:** June 2, 2026
+**Effective date:** July 14, 2026
 **Contact:** [shahanulhaqueshawon@gmail.com](mailto:shahanulhaqueshawon@gmail.com)
 
-Debt Book ("the App", "we", "us") is a personal loan and debt tracker for iOS. This policy explains what data the App handles and how it is protected. **We do not operate a server and we do not collect, transmit, sell, or share your personal data with us.** Your records stay on your device and, if you choose, in your own private iCloud account.
+Debt Book ("the App", "we", "us") is a personal loan and debt tracker for iOS. This policy explains what data the App handles and how it is protected. **We do not operate an application backend and we do not receive, sell, or share your debt records or contacts.** Your records are stored locally on your device and, if you explicitly use Cloud Backup, in your own private iCloud account.
 
 ---
 
 ## 1. Summary
 
 - **No backend.** The App has no server of ours. We never receive your financial records.
-- **Your data stays on your device** in a local database (Apple SwiftData).
-- **iCloud sync is optional** and uses *your* private iCloud account — not ours.
+- **Local storage.** Your data is stored on your device in a local database (Apple SwiftData).
+- **iCloud backup and restore are optional** and use *your* private iCloud account — not ours.
 - **No analytics, no tracking, no advertising SDKs.**
 - The only network use is for optional iCloud backup and for processing subscription purchases through Apple / RevenueCat.
 
@@ -34,26 +34,28 @@ You may store the following in the App: debtor/creditor names, transaction amoun
 
 ---
 
-## 3. iCloud Sync & Backup (Optional, Premium)
+## 3. iCloud Backup & Restore (Optional, Premium)
 
-If you enable Cloud Backup/Sync:
+If you use Cloud Backup or Restore:
 
 - Your data is stored in **your own private iCloud container** (`iCloud.com.shahanul.Debt-Book`) under your Apple ID.
 - This transfer is between your device and Apple's iCloud. **We have no access to it.**
 - Apple's handling of iCloud data is governed by [Apple's Privacy Policy](https://www.apple.com/legal/privacy/).
-- You can disable sync or delete the iCloud backup at any time.
+- You can stop using Cloud Backup and manage the App's iCloud data through Apple's iCloud settings.
 
-Network access is required **only** for this feature. If you do not enable iCloud backup, the App functions fully offline.
+Cloud Backup requires network access. The App also uses network access for subscription purchase and entitlement processing through Apple and RevenueCat.
 
 ---
 
 ## 4. Contacts Access
 
-The App can import a contact's name to speed up adding a transaction (`NSContactsUsageDescription`).
+The App provides an optional searchable contact list to speed up adding a transaction (`NSContactsUsageDescription`).
 
-- Contact access is requested only when you tap to pick a contact.
-- The selected contact's details are used **on your device** to fill in transaction fields.
-- Contact data is **not uploaded** anywhere by us.
+- Contact access is requested only when you open the contact-selection feature. If permission is granted, the App reads contacts from the device to display the searchable list, including names, phone numbers, email addresses, and contact thumbnails when available.
+- If you select a contact, the contact's name, first phone number, and first email address, when available, are copied into the App's local database and associated with your debt record. Contacts you do not select are not saved in the App's database.
+- We do not receive or upload your address book or selected contact information to a server operated by us, and the App does not send contacts to RevenueCat.
+- If you explicitly use Cloud Backup, saved debt-book records—including contact details you previously selected and saved—are included in the backup stored in your private iCloud container under your Apple ID. We do not have access to that data.
+- A selected contact's name and phone number may appear in a PDF transaction statement generated on the device. The PDF is shared only when you explicitly choose a destination through the iOS share sheet.
 - You can deny or revoke contacts permission in iOS Settings; the App still works (you type names manually).
 
 ---
@@ -72,7 +74,7 @@ The App can suggest names for your books using Apple's **on-device** language mo
 Premium features are sold via subscriptions and a lifetime purchase. Payments are processed by **Apple (App Store)**, and subscription state is managed through **RevenueCat**, our subscription infrastructure provider.
 
 - We never see or store your payment card details. Apple handles all billing.
-- RevenueCat receives a **random, anonymous app user identifier** and your purchase/entitlement status to validate your subscription and enable restore-purchases. It does not receive your debt records, names, or amounts.
+- RevenueCat processes subscription-related identifiers, purchase/entitlement information, and associated technical information needed to validate purchases and enable restore-purchases. The App does not send RevenueCat your contacts, debt records, names, notes, or transaction amounts.
 - RevenueCat's handling of data is governed by [RevenueCat's Privacy Policy](https://www.revenuecat.com/privacy/).
 - Apple's handling is governed by [Apple's Privacy Policy](https://www.apple.com/legal/privacy/).
 
@@ -88,9 +90,9 @@ Manage or cancel your subscription anytime in **iOS Settings → Apple ID → Su
 
 ---
 
-## 8. Data We Do **Not** Collect
+## 8. Data We Do **Not** Receive
 
-We do **not** collect, process, or have access to:
+The developer does **not** receive or have access to:
 
 - Your debts, transactions, names, amounts, or notes
 - Your contacts
@@ -111,7 +113,7 @@ The App is not directed to children under 13 and does not knowingly collect data
 You are in full control of your data:
 
 - **Access / Export:** Export your data from within the App.
-- **Delete:** Delete individual records or clear all data in the App; delete the iCloud backup from iCloud settings.
+- **Delete:** Delete individual records or clear local data in the App. If you used Cloud Backup, you can manage the App's stored iCloud data through Apple's iCloud settings.
 - Because we hold no copy of your data, deletion on your device (and iCloud) removes it entirely.
 
 ---
@@ -120,9 +122,9 @@ You are in full control of your data:
 
 | Service | Purpose | Data involved |
 |---|---|---|
-| Apple iCloud | Optional backup/sync | Your records (in your private container) |
+| Apple iCloud | Optional backup/restore | Your saved records, which may include contact details you selected (in your private container) |
 | Apple App Store | Payment processing | Handled by Apple |
-| RevenueCat | Subscription validation | Anonymous user ID, purchase status |
+| RevenueCat | Subscription validation | Subscription-related identifiers, purchase/entitlement information, and associated technical information |
 
 No advertising, analytics, or tracking services are used.
 

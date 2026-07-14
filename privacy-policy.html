@@ -144,11 +144,11 @@
   <div class="meta">
     <span><b>App</b> · Debt Book</span>
     <span><b>Developer</b> · Shahanul Haque</span>
-    <span><b>Effective</b> · June 2, 2026</span>
+    <span><b>Effective</b> · July 14, 2026</span>
     <span><b>Contact</b> · <a href="mailto:shahanulhaqueshawon@gmail.com">shahanulhaqueshawon@gmail.com</a></span>
   </div>
 
-  <p style="margin-top:26px;">Debt Book (“the App”, “we”, “us”) is a personal loan and debt tracker for iOS. This policy explains what data the App handles and how it is protected. <strong>We do not operate a server and we do not collect, transmit, sell, or share your personal data with us.</strong> Your records stay on your device and, if you choose, in your own private iCloud account.</p>
+  <p style="margin-top:26px;">Debt Book (“the App”, “we”, “us”) is a personal loan and debt tracker for iOS. This policy explains what data the App handles and how it is protected. <strong>We do not operate an application backend and we do not receive, sell, or share your debt records or contacts.</strong> Your records are stored locally on your device and, if you explicitly use Cloud Backup, in your own private iCloud account.</p>
 
   <div class="cards">
     <div class="card"><span class="ic">📵</span><h3>No backend</h3><p>We run no server. Your financial records never reach us.</p></div>
@@ -162,8 +162,8 @@
     <div class="panel">
       <ul>
         <li><strong>No backend.</strong> The App has no server of ours. We never receive your financial records.</li>
-        <li><strong>Your data stays on your device</strong> in a local database (Apple SwiftData).</li>
-        <li><strong>iCloud sync is optional</strong> and uses <em>your</em> private iCloud account — not ours.</li>
+        <li><strong>Local storage.</strong> Your data is stored on your device in a local database (Apple SwiftData).</li>
+        <li><strong>iCloud backup and restore are optional</strong> and use <em>your</em> private iCloud account — not ours.</li>
         <li><strong>No analytics, no tracking, no advertising SDKs.</strong></li>
         <li>The only network use is for optional iCloud backup and for processing subscription purchases through Apple / RevenueCat.</li>
       </ul>
@@ -183,27 +183,29 @@
   </section>
 
   <section>
-    <h2><span class="num">3</span> iCloud Sync &amp; Backup <span style="font-size:.7em;color:var(--muted);font-weight:500;">· Optional, Premium</span></h2>
+    <h2><span class="num">3</span> iCloud Backup &amp; Restore <span style="font-size:.7em;color:var(--muted);font-weight:500;">· Optional, Premium</span></h2>
     <div class="panel">
-      <p>If you enable Cloud Backup/Sync:</p>
+      <p>If you use Cloud Backup or Restore:</p>
       <ul>
         <li>Your data is stored in <strong>your own private iCloud container</strong> (<code>iCloud.com.shahanul.Debt-Book</code>) under your Apple ID.</li>
         <li>This transfer is between your device and Apple's iCloud. <strong>We have no access to it.</strong></li>
         <li>Apple's handling of iCloud data is governed by <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</li>
-        <li>You can disable sync or delete the iCloud backup at any time.</li>
+        <li>You can stop using Cloud Backup and manage the App's iCloud data through Apple's iCloud settings.</li>
       </ul>
-      <div class="callout">Network access is required <strong>only</strong> for this feature. If you do not enable iCloud backup, the App functions fully offline.</div>
+      <div class="callout">Cloud Backup requires network access. The App also uses network access for subscription purchase and entitlement processing through Apple and RevenueCat.</div>
     </div>
   </section>
 
   <section>
     <h2><span class="num">4</span> Contacts Access</h2>
     <div class="panel">
-      <p>The App can import a contact's name to speed up adding a transaction (<code>NSContactsUsageDescription</code>).</p>
+      <p>The App provides an optional searchable contact list to speed up adding a transaction (<code>NSContactsUsageDescription</code>).</p>
       <ul>
-        <li>Contact access is requested only when you tap to pick a contact.</li>
-        <li>The selected contact's details are used <strong>on your device</strong> to fill in transaction fields.</li>
-        <li>Contact data is <strong>not uploaded</strong> anywhere by us.</li>
+        <li>Contact access is requested only when you open the contact-selection feature. If permission is granted, the App reads contacts from the device to display the searchable list, including names, phone numbers, email addresses, and contact thumbnails when available.</li>
+        <li>If you select a contact, the contact's name, first phone number, and first email address, when available, are copied into the App's local database and associated with your debt record. Contacts you do not select are not saved in the App's database.</li>
+        <li>We do not receive or upload your address book or selected contact information to a server operated by us, and the App does not send contacts to RevenueCat.</li>
+        <li>If you explicitly use Cloud Backup, saved debt-book records—including contact details you previously selected and saved—are included in the backup stored in your private iCloud container under your Apple ID. We do not have access to that data.</li>
+        <li>A selected contact's name and phone number may appear in a PDF transaction statement generated on the device. The PDF is shared only when you explicitly choose a destination through the iOS share sheet.</li>
         <li>You can deny or revoke contacts permission in iOS Settings; the App still works (you type names manually).</li>
       </ul>
     </div>
@@ -226,7 +228,7 @@
       <p>Premium features are sold via subscriptions and a lifetime purchase. Payments are processed by <strong>Apple (App Store)</strong>, and subscription state is managed through <strong>RevenueCat</strong>, our subscription infrastructure provider.</p>
       <ul>
         <li>We never see or store your payment card details. Apple handles all billing.</li>
-        <li>RevenueCat receives a <strong>random, anonymous app user identifier</strong> and your purchase/entitlement status to validate your subscription and enable restore-purchases. It does not receive your debt records, names, or amounts.</li>
+        <li>RevenueCat processes subscription-related identifiers, purchase/entitlement information, and associated technical information needed to validate purchases and enable restore-purchases. The App does not send RevenueCat your contacts, debt records, names, notes, or transaction amounts.</li>
         <li>RevenueCat's handling of data is governed by <a href="https://www.revenuecat.com/privacy/">RevenueCat's Privacy Policy</a>.</li>
         <li>Apple's handling is governed by <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</li>
       </ul>
@@ -246,9 +248,9 @@
   </section>
 
   <section>
-    <h2><span class="num">8</span> Data We Do <em>Not</em> Collect</h2>
+    <h2><span class="num">8</span> Data We Do <em>Not</em> Receive</h2>
     <div class="panel">
-      <p>We do <strong>not</strong> collect, process, or have access to:</p>
+      <p>The developer does <strong>not</strong> receive or have access to:</p>
       <ul>
         <li>Your debts, transactions, names, amounts, or notes</li>
         <li>Your contacts</li>
@@ -272,7 +274,7 @@
       <p>You are in full control of your data:</p>
       <ul>
         <li><strong>Access / Export:</strong> Export your data from within the App.</li>
-        <li><strong>Delete:</strong> Delete individual records or clear all data in the App; delete the iCloud backup from iCloud settings.</li>
+        <li><strong>Delete:</strong> Delete individual records or clear local data in the App. If you used Cloud Backup, you can manage the App's stored iCloud data through Apple's iCloud settings.</li>
         <li>Because we hold no copy of your data, deletion on your device (and iCloud) removes it entirely.</li>
       </ul>
     </div>
@@ -284,9 +286,9 @@
       <table>
         <thead><tr><th>Service</th><th>Purpose</th><th>Data involved</th></tr></thead>
         <tbody>
-          <tr><td>Apple iCloud</td><td>Optional backup/sync</td><td>Your records (in your private container)</td></tr>
+          <tr><td>Apple iCloud</td><td>Optional backup/restore</td><td>Your saved records, which may include contact details you selected (in your private container)</td></tr>
           <tr><td>Apple App Store</td><td>Payment processing</td><td>Handled by Apple</td></tr>
-          <tr><td>RevenueCat</td><td>Subscription validation</td><td>Anonymous user ID, purchase status</td></tr>
+          <tr><td>RevenueCat</td><td>Subscription validation</td><td>Subscription-related identifiers, purchase/entitlement information, and associated technical information</td></tr>
         </tbody>
       </table>
       <p style="margin-bottom:6px;color:var(--muted);font-size:.9rem;">No advertising, analytics, or tracking services are used.</p>
