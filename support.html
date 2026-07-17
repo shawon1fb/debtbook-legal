@@ -4,45 +4,82 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Support — Debt Book</title>
+  <meta name="description" content="Support and frequently asked questions for the Debt Book iOS app." />
   <style>
-    :root {
-      --bg: #f4f7fc; --card: #ffffff; --text: #1a1a21; --muted: #5a626e;
-      --border: #e4e9f2; --primary: #0052d4; --accent: #ffc107;
-      --radius: 16px; --shadow: 0 8px 30px rgba(16,42,90,.08);
+    :root{
+      --bg:#05070d; --surface:rgba(255,255,255,.045); --surface-hi:rgba(255,255,255,.08);
+      --border:rgba(255,255,255,.09); --border-hi:rgba(255,255,255,.16);
+      --text:#eef2fb; --muted:#98a2b8; --muted-2:#6b7590;
+      --blue:#3b82f6; --blue-2:#2563eb; --gold:#ffc94a;
+      --radius:18px; --shadow:0 20px 60px rgba(0,0,0,.45);
     }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg: #0b1220; --card: #131c2e; --text: #eef2f8; --muted: #9aa4b5; --border: #22304a; }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f3f5fb; --surface:rgba(10,15,30,.035); --surface-hi:rgba(10,15,30,.06);
+        --border:rgba(10,15,30,.08); --border-hi:rgba(10,15,30,.14);
+        --text:#0e1424; --muted:#4c5670; --muted-2:#7b869e; --shadow:0 20px 60px rgba(20,30,60,.12); }
     }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.6; }
-    .hero { background: linear-gradient(135deg, #0052d4, #003a97); color: #fff;
-      padding: 56px 24px 72px; text-align: center; }
-    .app-icon { width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 18px; overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,.3), inset 0 0 0 1px rgba(255,255,255,.25); }
-    .app-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero h1 { font-size: 2.2rem; margin: 0 0 8px; font-weight: 800; letter-spacing: -.02em; }
-    .hero p { margin: 0; opacity: .9; }
-    .wrap { max-width: 720px; margin: -40px auto 60px; padding: 0 20px; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-      box-shadow: var(--shadow); padding: 28px 28px; margin-bottom: 20px; }
-    h2 { font-size: 1.2rem; margin: 0 0 14px; }
-    .cta { display: inline-block; background: var(--primary); color: #fff; text-decoration: none;
-      padding: 12px 22px; border-radius: 999px; font-weight: 600; }
-    .cta.gold { background: var(--accent); color: #3b2f00; }
-    .muted { color: var(--muted); }
-    details { border-top: 1px solid var(--border); padding: 14px 0; }
-    details:first-of-type { border-top: none; }
-    summary { font-weight: 600; cursor: pointer; }
-    summary::-webkit-details-marker { color: var(--primary); }
-    details p { margin: 10px 0 0; color: var(--muted); }
-    a { color: var(--primary); }
-    footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 20px; }
+    *{box-sizing:border-box}
+    body{margin:0; background:var(--bg); color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6;
+      overflow-x:hidden; position:relative;}
+    a{color:var(--blue)}
+
+    .bg-orbs{position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none}
+    .orb{position:absolute; border-radius:50%; filter:blur(90px); opacity:.5}
+    .orb.o1{width:480px;height:480px; background:radial-gradient(circle,var(--blue) 0%,transparent 70%); top:-160px; left:-120px}
+    .orb.o2{width:420px;height:420px; background:radial-gradient(circle,var(--gold) 0%,transparent 70%); top:140px; right:-160px}
+
+    nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(20px) saturate(160%);
+      background:color-mix(in srgb, var(--bg) 72%, transparent); border-bottom:1px solid var(--border)}
+    nav .inner{display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:720px; margin:0 auto}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.02rem}
+    .brand img{width:30px;height:30px;border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,.3)}
+    .back{display:inline-flex; align-items:center; gap:6px; font-size:.9rem; color:var(--muted); font-weight:600}
+    .back:hover{color:var(--text)}
+    .back svg{width:16px;height:16px}
+
+    .hero{padding:56px 24px 68px; text-align:center}
+    .app-icon{width:72px; height:72px; border-radius:18px; margin:0 auto 18px; overflow:hidden;
+      box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.15)}
+    .app-icon img{width:100%;height:100%;object-fit:cover;display:block}
+    .hero h1{font-size:2.1rem; margin:0 0 8px; font-weight:800; letter-spacing:-.02em}
+    .hero p{margin:0; color:var(--muted)}
+
+    .wrap{max-width:720px; margin:0 auto 60px; padding:0 20px}
+    .card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+      backdrop-filter:blur(14px); padding:28px; margin-bottom:20px; transition:transform .3s ease, border-color .3s ease}
+    .card:hover{border-color:var(--border-hi)}
+    h2{font-size:1.15rem; margin:0 0 14px}
+    .cta{display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--blue),var(--blue-2));
+      color:#fff; text-decoration:none; padding:12px 22px; border-radius:999px; font-weight:700;
+      box-shadow:0 8px 24px rgba(37,99,235,.35)}
+    .muted{color:var(--muted)}
+    details{border-top:1px solid var(--border); padding:14px 0}
+    details:first-of-type{border-top:none}
+    summary{font-weight:700; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:'+'; color:var(--muted); font-size:1.2rem; transition:transform .3s ease}
+    details[open] summary::after{transform:rotate(45deg)}
+    details p{margin:10px 0 0; color:var(--muted)}
+    .links-row{display:flex; gap:20px; flex-wrap:wrap}
+    footer{text-align:center; color:var(--muted-2); font-size:.85rem; padding:20px}
   </style>
 </head>
 <body>
+  <div class="bg-orbs"><div class="orb o1"></div><div class="orb o2"></div></div>
+
+  <nav>
+    <div class="inner">
+      <div class="brand"><img src="app-icon-v2.png" alt="Debt Book" /> Debt Book</div>
+      <a class="back" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        Back to home
+      </a>
+    </div>
+  </nav>
+
   <div class="hero">
-    <div class="app-icon"><img src="app-icon.png" alt="Debt Book" /></div>
+    <div class="app-icon"><img src="app-icon-v2.png" alt="Debt Book" /></div>
     <h1>Debt Book Support</h1>
     <p>Personal Loan &amp; IOU Tracker</p>
   </div>
@@ -94,9 +131,11 @@
 
     <div class="card">
       <h2>Links</h2>
-      <p class="muted">
-        <a href="https://shawon1fb.github.io/debtbook-legal/privacy-policy.html">Privacy Policy</a>
-      </p>
+      <div class="links-row muted">
+        <a href="index.html">Home</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="mailto:shahanulhaqueshawon@gmail.com">Contact</a>
+      </div>
     </div>
   </div>
 
