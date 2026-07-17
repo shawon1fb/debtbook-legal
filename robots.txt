@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://shawon1fb.github.io/debtbook-legal/sitemap.xml
