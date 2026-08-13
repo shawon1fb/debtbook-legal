@@ -39,6 +39,9 @@
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
+  /* The nav is sticky, so an anchor jump would land the section heading behind
+     it. Offset every jump target by a little more than the nav's height. */
+  :target, section[id]{scroll-margin-top:88px}
   body{
     margin:0; background:var(--bg); color:var(--text);
     font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;
@@ -308,7 +311,7 @@
   </div>
 </section>
 
-<section id="about">
+<section id="for-you">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow"><span class="dot"></span> What Debt Book does</span>
@@ -316,7 +319,7 @@
       <p>We all lend and borrow — a friend short on cash, a family medical bill, a shopkeeper's running tab. Debt Book replaces the notebook (khata) and the memory with one clear, private ledger. You record who owes what, the app tracks interest and payments, and you always know exactly where things stand.</p>
     </div>
 
-    <div class="persona-grid" id="for-you">
+    <div class="persona-grid">
       <div class="card persona reveal">
         <div class="ico">👨‍👩‍👧</div>
         <h3>Friends &amp; Family</h3>
