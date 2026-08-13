@@ -27,6 +27,22 @@ does *not* start its own Caddy on that server. `remote-proxy.sh` merges a
 certificates untouched. On a fresh server with no Caddy it starts its own
 (`debtbook-caddy`) from `deploy/Caddyfile` instead.
 
+**The other repo must use the marker model too.** `bd-tax-calculator-site`'s
+`remote-proxy.sh` used to scp its whole Caddyfile over the live one and recreate
+the container — that silently deleted this site's route. It has been changed to
+the same assemble-from-markers scheme (`deploy/caddy-site.snippet` there), so
+either repo can deploy in any order without touching the other's block. If that
+repo is ever rolled back to the old script, recover with one command:
+`bash deploy/scripts/remote-proxy.sh`.
+
+**Repeated deploys are safe.** Both scripts rebuild the file from base + marked
+blocks every run, squeeze trailing blank lines, keep only the 10 newest `.bak`
+files, and take an `flock` on the server so two simultaneous deploys can't drop
+each other's block. Verified byte-identical output over repeated alternating
+runs of both repos. `caddy reload` does not re-issue certificates, so there is
+no ACME rate-limit risk from redeploying — only a *new* or misconfigured domain
+can hit that.
+
 ---
 
 ## 0. One-time prerequisites

@@ -65,10 +65,26 @@ docker network inspect "$NETWORK" >/dev/null 2>&1 || {
 
 running() { docker ps --format '{{.Names}}' | grep -qx "$1"; }
 
+exists() { docker ps -a --format '{{.Names}}' | grep -qx "$1"; }
+
 # Which proxy is in charge? Prefer the shared one named in deploy/.env.
+#
+# A *stopped* bd-tax-caddy must not be mistaken for "no proxy here": starting a
+# second one would grab :80/:443, and bd-tax-caddy (restart: unless-stopped)
+# would then fail to come back after a reboot. Start the existing one instead.
+if ! running "$SHARED_CADDY" && exists "$SHARED_CADDY"; then
+  echo "▶ ${SHARED_CADDY} exists but is stopped — starting it"
+  docker start "$SHARED_CADDY" >/dev/null
+  sleep 2
+fi
+
 PROXY=""
 if running "$SHARED_CADDY"; then PROXY="$SHARED_CADDY"
 elif running "$OWN_CADDY";   then PROXY="$OWN_CADDY"
+elif exists "$OWN_CADDY";    then
+  echo "▶ ${OWN_CADDY} exists but is stopped — starting it"
+  docker start "$OWN_CADDY" >/dev/null; sleep 2
+  running "$OWN_CADDY" && PROXY="$OWN_CADDY"
 fi
 
 # Host path of the Caddyfile bind-mounted into the proxy container.
@@ -106,6 +122,7 @@ awk -v b="$B" -v e="$E" '
   index($0, e) == 1 { skip = 0 }
 ' "$CF" > "${CF}.new"
 mv "${CF}.new" "$CF"
+ls -t "${CF}".bak.* 2>/dev/null | tail -n +11 | xargs -r rm -f || true
 REMOTE
   docker exec "$PROXY" caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile
   echo "✅ Route for ${DOMAIN} removed and ${PROXY} reloaded."
@@ -159,18 +176,27 @@ else
   ssh "${SSH_OPTS[@]}" "$SSH_TARGET" \
     "CF='${CF}' SNIP='${REMOTE_DIR}/site.caddy' B='${MARK_BEGIN}' E='${MARK_END}' bash -s" <<'REMOTE'
 set -euo pipefail
+# Both sites read-modify-write this one file. Serialise, so two deploys running
+# at once can't drop each other's block.
+exec 9>"${CF}.lock"
+command -v flock >/dev/null 2>&1 && flock -w 30 9
 BAK="${CF}.bak.$(date +%s)"
 cp "$CF" "$BAK"
 echo "$BAK" > "$(dirname "$SNIP")/.last-backup"
-# Drop any previous debtbook block, then append the fresh one.
+# Drop any previous debtbook block, then append the fresh one. Trailing blank
+# lines are squeezed first, otherwise every re-run would leave one more behind.
 awk -v b="$B" -v e="$E" '
   index($0, b) == 1 { skip = 1 }
   skip == 0 { print }
   index($0, e) == 1 { skip = 0 }
-' "$CF" > "${CF}.new"
+' "$CF" \
+  | awk '{ l[NR] = $0 } END { n = NR; while (n > 0 && l[n] ~ /^[[:space:]]*$/) n--; for (i = 1; i <= n; i++) print l[i] }' \
+  > "${CF}.new"
 printf '\n' >> "${CF}.new"
 cat "$SNIP" >> "${CF}.new"
 mv "${CF}.new" "$CF"
+# Keep the 10 newest backups; deploys run often and these are endless otherwise.
+ls -t "${CF}".bak.* 2>/dev/null | tail -n +11 | xargs -r rm -f || true
 REMOTE
 
   # Validate inside the container; restore the backup if the merge broke it.
