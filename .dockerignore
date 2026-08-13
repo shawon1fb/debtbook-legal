@@ -1,0 +1,14 @@
+.git
+.gitignore
+.DS_Store
+.deploy-history
+README.md
+DEPLOY.md
+_config.yml
+privacy-policy.md
+deploy/
+scripts/
+docker-compose*.yml
+Dockerfile
+*.log
+node_modules/

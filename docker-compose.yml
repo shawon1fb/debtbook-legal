@@ -1,0 +1,10 @@
+# Local: builds from source. Published on a host port so you can open it.
+#   docker compose up -d --build   → http://localhost:8090
+# Port 8090 (not 8089) so it can run next to bd-tax-calculator-site locally.
+services:
+  debtbook-site:
+    build: .
+    container_name: debtbook-legal-site-local
+    restart: unless-stopped
+    ports:
+      - "8090:80"

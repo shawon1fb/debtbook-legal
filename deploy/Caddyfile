@@ -1,0 +1,32 @@
+# deploy/Caddyfile — STANDALONE reverse proxy config for debtbooktracker.com.
+#
+# This file is only used when NO Caddy container exists on the target server
+# (fresh box). On the current server (165.99.219.35) a Caddy container named
+# bd-tax-caddy already owns ports 80/443 — there, deploy/scripts/remote-proxy.sh
+# merges deploy/caddy-site.snippet into that container's Caddyfile instead and
+# reloads it. Two Caddy containers cannot both bind 80/443.
+#
+# Started by deploy/scripts/remote-proxy.sh, equivalent to:
+#   docker run -d --name debtbook-caddy --restart unless-stopped \
+#     --network bd-tax-network -p 80:80 -p 443:443 \
+#     -e DEPLOY_DOMAIN=debtbooktracker.com \
+#     -v caddy_data:/data -v caddy_config:/config \
+#     -v /home/deploy/debtbook-caddy/Caddyfile:/etc/caddy/Caddyfile:ro \
+#     caddy:2 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+{
+	# Let's Encrypt expiry notices. Override with DEPLOY_ACME_EMAIL in deploy/.env.
+	email {$DEPLOY_ACME_EMAIL:shahanulhaqueshawon@gmail.com}
+}
+
+{$DEPLOY_DOMAIN:debtbooktracker.com} {
+	encode gzip
+
+	reverse_proxy debtbook-site:80
+}
+
+# www redirect — enable ONLY after www.debtbooktracker.com has an A/AAAA record
+# pointing at this server.
+#
+# www.{$DEPLOY_DOMAIN:debtbooktracker.com} {
+# 	redir https://{$DEPLOY_DOMAIN:debtbooktracker.com}{uri} permanent
+# }

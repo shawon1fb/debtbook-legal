@@ -1,0 +1,22 @@
+# Production: runs the image pulled from Docker Hub (no build on the server).
+# SITE_IMAGE and SITE_NETWORK are injected by deploy/scripts/remote-deploy.sh.
+#
+# No host ports are published — the reverse proxy (Caddy) reaches this container
+# by name over the shared external network. That network (bd-tax-network) is the
+# same one the taxhelperbd.com site + bd-tax-caddy already use on this server.
+name: debtbook-legal-site
+
+services:
+  debtbook-site:
+    image: ${SITE_IMAGE:-shawon1fb/debtbook-legal-site:latest}
+    container_name: debtbook-legal-site
+    restart: unless-stopped
+    expose:
+      - 80
+    networks:
+      - site-net
+
+networks:
+  site-net:
+    name: ${SITE_NETWORK:-bd-tax-network}
+    external: true

@@ -1,0 +1,18 @@
+# >>> debtbook-legal (managed by deploy/scripts/remote-proxy.sh — do not edit by hand) >>>
+# This block is merged into the Caddyfile of the Caddy container that already
+# runs on this server (bd-tax-caddy). __DOMAIN__ is replaced with DEPLOY_DOMAIN
+# from deploy/.env before shipping. `debtbook-site` is the compose service name
+# in docker-compose.prod.yml — Caddy resolves it over the shared docker network.
+__DOMAIN__ {
+	encode gzip
+
+	reverse_proxy debtbook-site:80
+}
+
+# www — served only if www.__DOMAIN__ has an A record pointing at this server.
+# Uncomment (and re-run remote-proxy.sh) once the DNS record exists; without it
+# Caddy retries ACME forever.
+# www.__DOMAIN__ {
+# 	redir https://__DOMAIN__{uri} permanent
+# }
+# <<< debtbook-legal <<<

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Page not found — Debt Book</title>
+<meta name="robots" content="noindex, follow" />
+<meta name="theme-color" content="#05070d" />
+<link rel="icon" href="/app-icon-v2.png" />
+<style>
+  :root{
+    --bg:#05070d; --bg2:#0a0f1c; --surface:rgba(255,255,255,.045);
+    --border:rgba(255,255,255,.09); --text:#eef2fb; --muted:#98a2b8;
+    --blue:#3b82f6; --blue-2:#2563eb; --radius:20px;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f3f5fb; --bg2:#e9edf7; --surface:rgba(10,15,30,.035);
+      --border:rgba(10,15,30,.08); --text:#0e1424; --muted:#4c5670; }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; display:grid; place-items:center; padding:24px;
+    background:radial-gradient(1200px 600px at 50% -10%, var(--bg2), var(--bg)) fixed;
+    color:var(--text);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  }
+  .card{
+    max-width:520px; width:100%; text-align:center; padding:40px 28px;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius); backdrop-filter:blur(12px);
+  }
+  img{width:72px; height:72px; border-radius:18px; margin-bottom:20px}
+  .code{font-size:52px; font-weight:700; letter-spacing:-1px; margin:0}
+  h1{font-size:20px; margin:8px 0 10px}
+  p{color:var(--muted); margin:0 0 26px}
+  a.btn{
+    display:inline-block; padding:12px 22px; border-radius:999px;
+    background:linear-gradient(180deg,var(--blue),var(--blue-2));
+    color:#fff; text-decoration:none; font-weight:600;
+  }
+  .links{margin-top:18px; font-size:14px}
+  .links a{color:var(--muted); text-decoration:none; margin:0 8px}
+  .links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+  <div class="card">
+    <img src="/app-icon-v2.png" alt="Debt Book" />
+    <p class="code">404</p>
+    <h1>This page doesn’t exist</h1>
+    <p>The link may be old or mistyped.</p>
+    <a class="btn" href="/">Back to home</a>
+    <div class="links">
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/support.html">Support</a>
+    </div>
+  </div>
+</body>
+</html>
