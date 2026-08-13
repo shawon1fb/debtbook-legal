@@ -121,7 +121,9 @@ awk -v b="$B" -v e="$E" '
   skip == 0 { print }
   index($0, e) == 1 { skip = 0 }
 ' "$CF" > "${CF}.new"
-mv "${CF}.new" "$CF"
+# Write in place: a bind-mounted FILE is pinned to its inode, so `mv` would
+# leave the container reading the old file forever. Truncate + rewrite instead.
+cat "${CF}.new" > "$CF" && rm -f "${CF}.new"
 ls -t "${CF}".bak.* 2>/dev/null | tail -n +11 | xargs -r rm -f || true
 REMOTE
   docker exec "$PROXY" caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile
@@ -194,10 +196,43 @@ awk -v b="$B" -v e="$E" '
   > "${CF}.new"
 printf '\n' >> "${CF}.new"
 cat "$SNIP" >> "${CF}.new"
-mv "${CF}.new" "$CF"
+# Write in place: a bind-mounted FILE is pinned to its inode, so `mv` would
+# leave the container reading the old file forever. Truncate + rewrite instead.
+cat "${CF}.new" > "$CF" && rm -f "${CF}.new"
 # Keep the 10 newest backups; deploys run often and these are endless otherwise.
 ls -t "${CF}".bak.* 2>/dev/null | tail -n +11 | xargs -r rm -f || true
 REMOTE
+
+  # A bind-mounted FILE is pinned to the inode it had when the container
+  # started. If anything ever replaced the file instead of rewriting it (an
+  # `mv`, or an editor that writes a new file), the container still reads the
+  # old inode: `caddy reload` then says "config is unchanged" and the new route
+  # never goes live. Compare both sides before trusting the reload.
+  HOST_SHA="$(ssh "${SSH_OPTS[@]}" "$SSH_TARGET" "sha256sum '${CF}'" | cut -d' ' -f1)"
+  CT_SHA="$(docker exec "$PROXY" sha256sum /etc/caddy/Caddyfile 2>/dev/null | cut -d' ' -f1)"
+  if [ -n "$HOST_SHA" ] && [ "$HOST_SHA" != "$CT_SHA" ]; then
+    if [ "$PROXY" = "$OWN_CADDY" ]; then
+      echo "▶ ${PROXY} is bound to a stale copy of the Caddyfile — recreating it"
+      docker rm -f "$OWN_CADDY" >/dev/null 2>&1 || true
+      docker run -d --name "$OWN_CADDY" \
+        --restart unless-stopped \
+        --network "$NETWORK" \
+        -p 80:80 -p 443:443 \
+        -e DEPLOY_DOMAIN="$DOMAIN" \
+        ${EMAIL:+-e DEPLOY_ACME_EMAIL="$EMAIL"} \
+        -v caddy_data:/data -v caddy_config:/config \
+        -v "${CF}:/etc/caddy/Caddyfile:ro" \
+        caddy:2 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile >/dev/null
+      sleep 3
+    else
+      echo "❌ ${PROXY} is bound to a STALE copy of ${CF}."
+      echo "   The merge succeeded on disk, but the container cannot see it, so"
+      echo "   reloading would be a no-op. ${PROXY} belongs to the other repo —"
+      echo "   recreate it once from there (a few seconds of downtime, certs kept):"
+      echo "     cd ../bd-tax-calculator-site && bash deploy/scripts/remote-proxy.sh"
+      exit 1
+    fi
+  fi
 
   # Validate inside the container; restore the backup if the merge broke it.
   if ! docker exec "$PROXY" caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile >/dev/null 2>&1; then
