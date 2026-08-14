@@ -5,6 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — Debt Book</title>
 <meta name="description" content="Privacy Policy for the Debt Book iOS app — local storage with optional private iCloud backup.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#05070d">
+<link rel="canonical" href="https://debtbooktracker.com/privacy-policy.html">
+<link rel="icon" href="app-icon-v2.png">
+<meta property="og:site_name" content="Debt Book">
+<meta property="og:url" content="https://debtbooktracker.com/privacy-policy.html">
+<meta property="og:title" content="Privacy Policy — Debt Book">
+<meta property="og:description" content="How the Debt Book iOS app stores and protects your data on-device and in your private iCloud.">
+<meta property="og:image" content="https://debtbooktracker.com/app-icon-v2.png">
+<meta property="og:image:width" content="240">
+<meta property="og:image:height" content="240">
+<meta property="og:image:alt" content="Debt Book app icon">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Privacy Policy — Debt Book">
+<meta name="twitter:description" content="How the Debt Book iOS app stores and protects your data on-device and in your private iCloud.">
+<meta name="twitter:image" content="https://debtbooktracker.com/app-icon-v2.png">
+<meta name="twitter:image:alt" content="Debt Book app icon">
 <style>
   :root{
     --bg:#05070d; --surface:rgba(255,255,255,.045); --surface-hi:rgba(255,255,255,.08);
@@ -32,7 +50,7 @@
 
   nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(20px) saturate(160%);
     background:color-mix(in srgb, var(--bg) 72%, transparent); border-bottom:1px solid var(--border)}
-  nav .inner{display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:820px; margin:0 auto}
+  nav .inner{display:flex; align-items:center; justify-content:space-between; width:100%; padding:14px 24px; max-width:820px; margin:0 auto}
   .brand{display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.02rem}
   .brand img{width:30px;height:30px;border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,.3)}
   .back{display:inline-flex; align-items:center; gap:6px; font-size:.9rem; color:var(--muted); font-weight:600}
@@ -55,14 +73,16 @@
   .meta{display:flex; flex-wrap:wrap; gap:8px 26px; justify-content:center;
     background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
     padding:18px 24px; box-shadow:var(--shadow); font-size:.88rem; backdrop-filter:blur(14px); margin-top:8px}
-  .meta b{color:var(--text)} .meta span{color:var(--muted)} .meta a{color:var(--blue); text-decoration:none}
+  .meta b{color:var(--text)}
+  .meta span{min-width:0; color:var(--muted); overflow-wrap:anywhere}
+  .meta a{color:var(--blue); text-decoration:none; overflow-wrap:anywhere}
 
   .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin:28px 0 8px}
   .card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
     padding:18px 18px 16px; backdrop-filter:blur(14px); transition:transform .3s ease, border-color .3s ease}
   .card:hover{transform:translateY(-4px); border-color:var(--border-hi)}
   .card .ic{font-size:22px; margin-bottom:8px; display:block}
-  .card h3{margin:0 0 4px; font-size:.98rem} .card p{margin:0; color:var(--muted); font-size:.88rem}
+  .card h2{display:block; margin:0 0 4px; font-size:.98rem} .card p{margin:0; color:var(--muted); font-size:.88rem}
 
   section{margin-top:34px}
   h2{font-size:1.2rem; letter-spacing:-.01em; margin:0 0 12px; display:flex; align-items:center; gap:10px}
@@ -77,8 +97,8 @@
     font-size:.85em; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
   strong{font-weight:700}
 
-  table{border-collapse:collapse; width:100%; margin:8px 0; font-size:.92rem}
-  th,td{border-bottom:1px solid var(--border); padding:11px 12px; text-align:left; vertical-align:top}
+  table{border-collapse:collapse; table-layout:fixed; width:100%; margin:8px 0; font-size:.92rem}
+  th,td{border-bottom:1px solid var(--border); padding:11px 12px; text-align:left; vertical-align:top; overflow-wrap:anywhere}
   th{color:var(--muted); font-weight:600; font-size:.82rem; text-transform:uppercase; letter-spacing:.04em}
   tr:last-child td{border-bottom:none}
 
@@ -99,8 +119,8 @@
 
 <nav>
   <div class="inner">
-    <div class="brand"><img src="app-icon-v2.png" alt="Debt Book" /> Debt Book</div>
-    <a class="back" href="index.html">
+    <div class="brand"><img src="app-icon-v2.png" alt="Debt Book" width="30" height="30" decoding="async" /> Debt Book</div>
+    <a class="back" href="/">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       Back to home
     </a>
@@ -108,7 +128,7 @@
 </nav>
 
 <header class="hero">
-  <div class="app-icon"><img src="app-icon-v2.png" alt="Debt Book"></div>
+  <div class="app-icon"><img src="app-icon-v2.png" alt="Debt Book" width="76" height="76" decoding="async"></div>
   <span class="eyebrow"><span class="dot"></span> Privacy-first · No backend</span>
   <h1>Privacy Policy</h1>
   <p>Stored locally or in your private iCloud. We never see your records.</p>
@@ -126,10 +146,10 @@
   <p style="margin-top:26px;">Debt Book (“the App”, “we”, “us”) is a personal loan and debt tracker for iOS. This policy explains what data the App handles and how it is protected. <strong>We do not operate an application backend and we do not receive, sell, or share your debt records or contacts.</strong> Your records are stored locally on your device and, if you explicitly use Cloud Backup, in your own private iCloud account.</p>
 
   <div class="cards">
-    <div class="card"><span class="ic">📵</span><h3>No backend</h3><p>We run no server. Your financial records never reach us.</p></div>
-    <div class="card"><span class="ic">📱</span><h3>On-device</h3><p>Data is stored in a local database on your device.</p></div>
-    <div class="card"><span class="ic">☁️</span><h3>Your iCloud</h3><p>Optional backup uses your private iCloud — not ours.</p></div>
-    <div class="card"><span class="ic">🚫</span><h3>No tracking</h3><p>Zero analytics, ads, or tracking SDKs.</p></div>
+    <div class="card"><span class="ic">📵</span><h2>No backend</h2><p>We run no server. Your financial records never reach us.</p></div>
+    <div class="card"><span class="ic">📱</span><h2>On-device</h2><p>Data is stored in a local database on your device.</p></div>
+    <div class="card"><span class="ic">☁️</span><h2>Your iCloud</h2><p>Optional backup uses your private iCloud — not ours.</p></div>
+    <div class="card"><span class="ic">🚫</span><h2>No tracking</h2><p>Zero analytics, ads, or tracking SDKs.</p></div>
   </div>
 
   <section>
@@ -281,7 +301,7 @@
     <p><strong>Questions about your privacy?</strong></p>
     <a class="pill-link" href="mailto:shahanulhaqueshawon@gmail.com">Email us</a>
     <div class="foot-links">
-      <a href="index.html">Home</a>
+      <a href="/">Home</a>
       <a href="support.html">Support</a>
       <a href="mailto:shahanulhaqueshawon@gmail.com">Contact</a>
     </div>
